@@ -1,0 +1,39 @@
+// Arquivo: calendario2025_NomeSobrenome_Matricula.js
+// Nome: Cauã Mata
+// Matrícula: 2424290031
+const meses = [
+  "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+];
+const diasPorMes = [
+  31, 28, 31, 30, 31, 30,
+  31, 31, 30, 31, 30, 31
+];
+const diasSemana = ["D", "S", "T", "Q", "Q", "S", "S"];
+
+// Função para descobrir o dia da semana do primeiro dia do mês (0=Domingo, ..., 6=Sábado)
+function diaSemanaPrimeiroDia(mes, ano) {
+  return new Date(ano, mes, 1).getDay();
+}
+
+for (let i = 0; i < meses.length; i++) {
+  console.log(`\n${meses[i]} de 2025`);
+  console.log(diasSemana.join(" "));
+  let primeiroDia = diaSemanaPrimeiroDia(i, 2025);
+  let linha = [];
+  // Espaços em branco até o primeiro dia
+  for (let s = 0; s < primeiroDia; s++) {
+    linha.push("  ");
+  }
+  for (let d = 1; d <= diasPorMes[i]; d++) {
+    linha.push(d.toString().padStart(2, ' '));
+    if (linha.length === 7) {
+      console.log(linha.join(" "));
+      linha = [];
+    }
+  }
+  if (linha.length > 0) {
+    while (linha.length < 7) linha.push("  ");
+    console.log(linha.join(" "));
+  }
+}
